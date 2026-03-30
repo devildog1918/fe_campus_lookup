@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#9f3323" />
+  <meta name="description" content="Look up the Field Engineer assigned to a campus." />
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+  <link rel="stylesheet" href="./styles.css" />
+  <title>Field Engineer Lookup</title>
+</head>
+<body>
+  <main class="app-shell">
+    <section class="card">
+      <header class="header">
+        <div>
+          <h1>Field Engineer Lookup</h1>
+          <p>Enter campus initials to find the assigned Field Engineer.</p>
+        </div>
+        <div class="pill">CSV Powered</div>
+      </header>
+
+      <label for="campusInput" class="label">Campus Initials</label>
+      <input
+        id="campusInput"
+        class="search-input"
+        type="text"
+        inputmode="text"
+        autocomplete="off"
+        autocapitalize="characters"
+        spellcheck="false"
+        placeholder="Example: MCHS"
+      />
+
+      <div class="helper">
+        To update the list later, replace <strong>field-engineers.csv</strong> with a new exported CSV.
+      </div>
+
+      <div id="statusCard" class="status-card">Loading campus assignments...</div>
+      <div id="resultArea"></div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
