@@ -1,47 +1,383 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#9f3323" />
-  <meta name="description" content="Look up the Field Engineer assigned to a campus." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Field Engineer Lookup</title>
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="FE Lookup" />
   <link rel="manifest" href="./manifest.json" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-  <link rel="stylesheet" href="./styles.css" />
-  <title>Field Engineer Lookup</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #e5e7eb;
+    }
+    body {
+      overflow: hidden;
+    }
+    .shell {
+      height: 100dvh;
+      padding: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+    }
+    .app {
+      width: 100%;
+      max-width: 430px;
+      height: 100%;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.1;
+      margin: 0;
+    }
+    .sub {
+      margin-top: 4px;
+      font-size: 0.78rem;
+      color: #475569;
+    }
+    .tag {
+      background: #f1f5f9;
+      color: #475569;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 6px 8px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+    .label {
+      margin-top: 14px;
+      margin-bottom: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #334155;
+    }
+    .input {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      border-radius: 18px;
+      padding: 14px 16px;
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      outline: none;
+    }
+    .input:focus {
+      border-color: #64748b;
+    }
+    .panel {
+      margin-top: 14px;
+      flex: 1;
+      border-radius: 22px;
+      padding: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .panel.ready { background: #f8fafc; border: 1px solid #e2e8f0; }
+    .panel.match { background: #f0fdf4; border: 1px solid #bbf7d0; }
+    .panel.warn  { background: #fffbeb; border: 1px solid #fde68a; }
+    .panel.err   { background: #fef2f2; border: 1px solid #fecaca; }
+
+    .kicker {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+    .kicker.ready { color: #334155; }
+    .kicker.match { color: #166534; }
+    .kicker.warn  { color: #92400e; }
+    .kicker.err   { color: #991b1b; }
+
+    .campus {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1;
+      margin-top: 2px;
+    }
+    .fe-label {
+      margin-top: 16px;
+      font-size: 0.85rem;
+      color: #475569;
+    }
+    .engineer {
+      margin-top: 4px;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.15;
+      word-break: break-word;
+    }
+    .small {
+      font-size: 0.9rem;
+      color: #334155;
+      line-height: 1.4;
+    }
+    .count {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1;
+    }
+    .matches {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+    .match-btn {
+      border: none;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 12px;
+      text-align: left;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      cursor: pointer;
+    }
+    .match-code {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1;
+    }
+    .match-name {
+      margin-top: 4px;
+      font-size: 0.95rem;
+      color: #334155;
+    }
+  </style>
 </head>
 <body>
-  <main class="app-shell">
-    <section class="card">
-      <header class="header">
+  <div class="shell">
+    <div class="app">
+      <div class="top">
         <div>
-          <h1>Field Engineer Lookup</h1>
-          <p>Enter campus initials to find the assigned Field Engineer.</p>
+          <h1 class="title">Field Engineer Lookup</h1>
+          <div class="sub">Enter campus initials.</div>
         </div>
-        <div class="pill">CSV Powered</div>
-      </header>
-
-      <label for="campusInput" class="label">Campus Initials</label>
-      <input
-        id="campusInput"
-        class="search-input"
-        type="text"
-        inputmode="text"
-        autocomplete="off"
-        autocapitalize="characters"
-        spellcheck="false"
-        placeholder="Example: MCHS"
-      />
-
-      <div class="helper">
-        To update the list later, replace <strong>field-engineers.csv</strong> with a new exported CSV.
+        <div class="tag">CSV</div>
       </div>
 
-      <div id="statusCard" class="status-card">Loading campus assignments...</div>
-      <div id="resultArea"></div>
-    </section>
-  </main>
+      <label class="label" for="campusInput">Campus Initials</label>
+      <input id="campusInput" class="input" type="text" placeholder="Example: MHS" autocomplete="off" autocorrect="off" spellcheck="false" />
 
-  <script src="./app.js"></script>
+      <div id="panel" class="panel ready"></div>
+    </div>
+  </div>
+
+  <script>
+    const input = document.getElementById("campusInput");
+    const panel = document.getElementById("panel");
+    let rows = [];
+
+    function normalizeCampus(value) {
+      return String(value || "").trim().toUpperCase().replace(/\s+/g, "");
+    }
+
+    function splitCsvLine(line) {
+      const result = [];
+      let current = "";
+      let inQuotes = false;
+
+      for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        const next = line[i + 1];
+
+        if (char === '"') {
+          if (inQuotes && next === '"') {
+            current += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (char === "," && !inQuotes) {
+          result.push(current);
+          current = "";
+        } else {
+          current += char;
+        }
+      }
+
+      result.push(current);
+      return result;
+    }
+
+    function parseCsv(text) {
+      const lines = text.split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+      if (lines.length < 2) return [];
+
+      const header = splitCsvLine(lines[0]).map(item => item.trim().toLowerCase());
+      const campusIndex = header.findIndex(item =>
+        item === "campus" || item === "campus initials" || item === "campus id"
+      );
+      const engineerIndex = header.findIndex(item =>
+        item === "field engineer" || item === "engineer"
+      );
+
+      if (campusIndex === -1 || engineerIndex === -1) {
+        throw new Error("CSV must contain Campus and Field Engineer columns.");
+      }
+
+      return lines
+        .slice(1)
+        .map(splitCsvLine)
+        .map(parts => ({
+          campus: String(parts[campusIndex] || "").trim(),
+          engineer: String(parts[engineerIndex] || "").trim()
+        }))
+        .filter(row => row.campus && row.engineer)
+        .sort((a, b) => a.campus.localeCompare(b.campus));
+    }
+
+    function renderReady() {
+      panel.className = "panel ready";
+      panel.innerHTML = `
+        <div class="kicker ready">Ready</div>
+        <div class="count">${rows.length}</div>
+        <div class="small" style="margin-top:8px;">Campus assignments loaded</div>
+        <div class="small" style="margin-top:16px;">Replace field-engineers.csv anytime to update the list.</div>
+      `;
+    }
+
+    function renderLoading() {
+      panel.className = "panel ready";
+      panel.innerHTML = `
+        <div class="kicker ready">Loading</div>
+        <div class="small">Loading campus assignments...</div>
+      `;
+    }
+
+    function renderError(message) {
+      panel.className = "panel err";
+      panel.innerHTML = `
+        <div class="kicker err">File Error</div>
+        <div class="small">${message}</div>
+        <div class="small" style="margin-top:10px;">Make sure the app folder contains field-engineers.csv.</div>
+      `;
+    }
+
+    function renderMatch(match) {
+      panel.className = "panel match";
+      panel.innerHTML = `
+        <div class="kicker match">Match Found</div>
+        <div class="campus">${match.campus}</div>
+        <div class="fe-label">Field Engineer</div>
+        <div class="engineer">${match.engineer}</div>
+      `;
+    }
+
+    function renderNoMatch(query) {
+      panel.className = "panel err";
+      panel.innerHTML = `
+        <div class="kicker err">No Match Found</div>
+        <div class="campus" style="font-size:2rem;">${query}</div>
+        <div class="small" style="margin-top:12px;">No campus matched that entry.</div>
+      `;
+    }
+
+    function renderPartial(matches) {
+      panel.className = "panel warn";
+      panel.innerHTML = `
+        <div class="kicker warn">Possible Matches</div>
+        <div class="matches">
+          ${matches.slice(0, 4).map(item => `
+            <button class="match-btn" data-campus="${item.campus}">
+              <div class="match-code">${item.campus}</div>
+              <div class="match-name">${item.engineer}</div>
+            </button>
+          `).join("")}
+        </div>
+      `;
+
+      panel.querySelectorAll(".match-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          input.value = btn.dataset.campus;
+          updateView();
+        });
+      });
+    }
+
+    function updateView() {
+      const normalized = normalizeCampus(input.value);
+
+      if (!normalized) {
+        renderReady();
+        return;
+      }
+
+      const exactMatch = rows.find(item => normalizeCampus(item.campus) === normalized) || null;
+
+      if (exactMatch) {
+        renderMatch(exactMatch);
+        return;
+      }
+
+      const partialMatches = rows.filter(item => {
+        const campus = normalizeCampus(item.campus);
+        return campus.includes(normalized) && campus !== normalized;
+      });
+
+      if (partialMatches.length > 0) {
+        renderPartial(partialMatches);
+        return;
+      }
+
+      renderNoMatch(normalized);
+    }
+
+    async function loadData() {
+      renderLoading();
+
+      try {
+        const response = await fetch("./field-engineers.csv", { cache: "no-store" });
+        if (!response.ok) throw new Error("Could not load field-engineers.csv");
+        const text = await response.text();
+        rows = parseCsv(text);
+        updateView();
+      } catch (err) {
+        renderError(err.message || "Failed to load campus list.");
+      }
+    }
+
+    input.addEventListener("input", () => {
+      input.value = input.value.toUpperCase();
+      updateView();
+    });
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+      });
+    }
+
+    loadData();
+  </script>
 </body>
 </html>
