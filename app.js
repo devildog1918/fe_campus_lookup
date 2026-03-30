@@ -1,166 +1,239 @@
+export default function FieldEngineerLookupPWA() {
+  const { useEffect, useMemo, useState } = React;
 
-const input = document.getElementById('campusInput');
-const statusCard = document.getElementById('statusCard');
-const resultArea = document.getElementById('resultArea');
+  const [query, setQuery] = useState("");
+  const [rows, setRows] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-let rows = [];
+  useEffect(() => {
+    let active = true;
 
-start();
+    async function loadCsv() {
+      try {
+        setLoading(true);
+        setError("");
 
-async function start() {
-  try {
-    const response = await fetch('./field-engineers.csv', { cache: 'no-store' });
-    if (!response.ok) throw new Error('Could not load field-engineers.csv');
-    const text = await response.text();
-    rows = parseCsv(text);
-    statusCard.textContent = `Loaded ${rows.length} assignments.`;
-    render('');
-  } catch (error) {
-    statusCard.textContent = error.message || 'Failed to load campus list.';
-    showError('File Error', 'Make sure field-engineers.csv is in the same folder as the app files.');
-  }
-}
+        const response = await fetch("./field-engineers.csv", { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error("Could not load field-engineers.csv");
+        }
 
-input.addEventListener('input', () => {
-  input.value = input.value.toUpperCase();
-  render(input.value);
-});
+        const text = await response.text();
+        const parsed = parseCsv(text);
 
-function render(rawValue) {
-  const query = normalize(rawValue);
-  resultArea.innerHTML = '';
+        if (active) {
+          setRows(parsed);
+        }
+      } catch (err) {
+        if (active) {
+          setError(err.message || "Failed to load campus list.");
+          setRows([]);
+        }
+      } finally {
+        if (active) {
+          setLoading(false);
+        }
+      }
+    }
 
-  if (!query) {
-    statusCard.textContent = `Loaded ${rows.length} assignments.`;
-    resultArea.appendChild(createCard('Ready', 'Enter campus initials to search.', 'neutral'));
-    return;
-  }
+    loadCsv();
 
-  const exactCode = rows.find(row => normalize(row.campus) === query);
-  if (exactCode) {
-    statusCard.textContent = 'Match found.';
-    showMatch(exactCode);
-    return;
-  }
+    return () => {
+      active = false;
+    };
+  }, []);
 
-  const exactName = rows.find(row => normalize(row.campusName) === query);
-  if (exactName) {
-    statusCard.textContent = 'Match found.';
-    showMatch(exactName);
-    return;
-  }
+  const normalized = normalizeCampus(query);
 
-  const partialCode = rows.filter(row => normalize(row.campus).includes(query));
-  const partialName = rows.filter(row => normalize(row.campusName).includes(query));
+  const exactMatch = useMemo(() => {
+    if (!normalized) return null;
+    return rows.find((item) => normalizeCampus(item.campus) === normalized) || null;
+  }, [normalized, rows]);
 
-  const merged = dedupe([...partialCode, ...partialName]).slice(0, 10);
-
-  if (merged.length) {
-    statusCard.textContent = 'Possible matches found.';
-    const card = createCard('Possible Matches', 'Tap a result to fill the search box.', 'warning');
-    const list = document.createElement('div');
-    list.className = 'list';
-
-    merged.forEach(row => {
-      const button = document.createElement('button');
-      button.innerHTML = `
-        <div><strong>${escapeHtml(row.campus || row.campusName)}</strong></div>
-        <div class="sub">${escapeHtml(row.campusName)}</div>
-        <div class="meta">Field Engineer: ${escapeHtml(row.engineer)}</div>
-      `;
-      button.addEventListener('click', () => {
-        input.value = row.campus || row.campusName;
-        render(input.value);
-      });
-      list.appendChild(button);
+  const partialMatches = useMemo(() => {
+    if (!normalized) return [];
+    return rows.filter((item) => {
+      const campus = normalizeCampus(item.campus);
+      return campus.includes(normalized) && campus !== normalized;
     });
+  }, [normalized, rows]);
 
-    card.appendChild(list);
-    resultArea.appendChild(card);
-    return;
-  }
+  return (
+    <div className="h-screen overflow-hidden bg-slate-100 p-3">
+      <div className="mx-auto flex h-full max-w-md flex-col">
+        <div className="flex h-full flex-col rounded-3xl bg-white p-4 shadow-xl">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <h1 className="text-xl font-bold leading-tight text-slate-900">
+                Field Engineer Lookup
+              </h1>
+              <p className="mt-1 text-xs text-slate-600">
+                Enter campus initials.
+              </p>
+            </div>
+            <div className="rounded-xl bg-slate-100 px-2 py-1 text-[10px] font-semibold text-slate-600">
+              CSV
+            </div>
+          </div>
 
-  statusCard.textContent = 'No match found.';
-  showError('No Match Found', `No campus matched "${escapeHtml(rawValue.trim())}".`);
+          <div className="mt-3">
+            <label className="mb-1 block text-xs font-medium text-slate-700">
+              Campus Initials
+            </label>
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value.toUpperCase())}
+              placeholder="Example: MHS"
+              className="w-full rounded-2xl border border-slate-300 px-4 py-3 text-xl uppercase shadow-sm outline-none focus:border-slate-500"
+              autoCapitalize="characters"
+              autoCorrect="off"
+              spellCheck={false}
+            />
+          </div>
+
+          {loading && (
+            <div className="mt-4 flex-1 rounded-3xl border border-slate-200 bg-slate-50 p-5 text-slate-700">
+              Loading campus assignments...
+            </div>
+          )}
+
+          {!loading && error && (
+            <div className="mt-4 flex-1 rounded-3xl border border-red-200 bg-red-50 p-5">
+              <div className="text-xs font-semibold uppercase tracking-wide text-red-800">
+                File Error
+              </div>
+              <div className="mt-2 text-sm text-slate-700">{error}</div>
+              <div className="mt-2 text-xs text-slate-600">
+                Make sure the app folder contains field-engineers.csv.
+              </div>
+            </div>
+          )}
+
+          {!loading && !error && normalized && exactMatch && (
+            <div className="mt-4 flex-1 rounded-3xl border border-green-200 bg-green-50 p-5">
+              <div className="text-xs font-semibold uppercase tracking-wide text-green-800">
+                Match Found
+              </div>
+              <div className="mt-3 text-4xl font-bold leading-none text-slate-900">
+                {exactMatch.campus}
+              </div>
+              <div className="mt-4 text-sm text-slate-600">Field Engineer</div>
+              <div className="mt-1 text-2xl font-semibold leading-tight text-slate-900">
+                {exactMatch.engineer}
+              </div>
+              {exactMatch.campusName && (
+                <div className="mt-3 text-sm text-slate-600">
+                  {exactMatch.campusName}
+                </div>
+              )}
+            </div>
+          )}
+
+          {!loading && !error && normalized && !exactMatch && partialMatches.length > 0 && (
+            <div className="mt-4 flex-1 overflow-hidden rounded-3xl border border-amber-200 bg-amber-50 p-4">
+              <div className="text-xs font-semibold uppercase tracking-wide text-amber-800">
+                Possible Matches
+              </div>
+              <div className="mt-3 max-h-full space-y-2 overflow-auto pr-1">
+                {partialMatches.slice(0, 4).map((item) => (
+                  <button
+                    key={`${item.campus}-${item.engineer}`}
+                    onClick={() => setQuery(item.campus)}
+                    className="block w-full rounded-2xl bg-white p-3 text-left shadow-sm transition hover:shadow-md"
+                  >
+                    <div className="text-lg font-bold leading-none text-slate-900">
+                      {item.campus}
+                    </div>
+                    <div className="mt-1 text-sm text-slate-700">{item.engineer}</div>
+                    {item.campusName && (
+                      <div className="mt-1 text-xs text-slate-500">{item.campusName}</div>
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {!loading && !error && normalized && !exactMatch && partialMatches.length === 0 && (
+            <div className="mt-4 flex-1 rounded-3xl border border-red-200 bg-red-50 p-5">
+              <div className="text-xs font-semibold uppercase tracking-wide text-red-800">
+                No Match Found
+              </div>
+              <div className="mt-3 text-lg font-semibold text-slate-900">{normalized}</div>
+              <div className="mt-2 text-sm text-slate-700">
+                No campus matched that entry.
+              </div>
+            </div>
+          )}
+
+          {!loading && !error && !normalized && (
+            <div className="mt-4 flex-1 rounded-3xl border border-slate-200 bg-slate-50 p-5">
+              <div className="text-xs font-semibold uppercase tracking-wide text-slate-800">
+                Ready
+              </div>
+              <div className="mt-3 text-3xl font-bold text-slate-900">{rows.length}</div>
+              <div className="mt-1 text-sm text-slate-700">Campus assignments loaded</div>
+              <div className="mt-4 text-xs text-slate-600">
+                Replace field-engineers.csv anytime to update the list.
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
 
-function showMatch(row) {
-  const card = createCard('Match Found', '', 'success');
-  const big = document.createElement('div');
-  big.className = 'big';
-  big.textContent = row.campus || row.campusName;
-
-  const sub = document.createElement('div');
-  sub.className = 'sub';
-  sub.textContent = row.campusName;
-
-  const meta = document.createElement('div');
-  meta.className = 'meta';
-  meta.innerHTML = `Field Engineer: <strong>${escapeHtml(row.engineer)}</strong>`;
-
-  card.appendChild(big);
-  if (row.campus && normalize(row.campus) !== normalize(row.campusName)) {
-    card.appendChild(sub);
-  }
-  card.appendChild(meta);
-  resultArea.appendChild(card);
-}
-
-function showError(title, message) {
-  resultArea.innerHTML = '';
-  resultArea.appendChild(createCard(title, message, 'error'));
-}
-
-function createCard(title, message, tone) {
-  const card = document.createElement('div');
-  card.className = `result-card ${tone}`;
-
-  const heading = document.createElement('h2');
-  heading.textContent = title;
-  card.appendChild(heading);
-
-  if (message) {
-    const body = document.createElement('div');
-    body.innerHTML = message;
-    card.appendChild(body);
-  }
-
-  return card;
-}
-
-function normalize(value) {
-  return String(value || '')
+function normalizeCampus(value) {
+  return String(value || "")
     .trim()
     .toUpperCase()
-    .replace(/\s+/g, '');
+    .replace(/\s+/g, "");
 }
 
 function parseCsv(text) {
-  const lines = text.split(/\r?\n/).filter(Boolean);
+  const lines = text
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+
   if (lines.length < 2) return [];
 
-  const header = splitCsvLine(lines[0]).map(v => v.trim().toLowerCase());
-  const campusIndex = header.indexOf('campus');
-  const nameIndex = header.indexOf('campus name');
-  const engineerIndex = header.indexOf('field engineer');
+  const header = splitCsvLine(lines[0]).map((item) => item.trim().toLowerCase());
 
-  if (campusIndex === -1 || nameIndex === -1 || engineerIndex === -1) {
-    throw new Error('CSV must contain Campus, Campus Name, and Field Engineer columns.');
+  const campusIndex = header.findIndex(
+    (item) => item === "campus" || item === "campus initials" || item === "campus id"
+  );
+
+  const campusNameIndex = header.findIndex(
+    (item) => item === "campus name"
+  );
+
+  const engineerIndex = header.findIndex(
+    (item) => item === "engineer" || item === "field engineer"
+  );
+
+  if (campusIndex === -1 || engineerIndex === -1) {
+    throw new Error("CSV must contain Campus and Field Engineer columns.");
   }
 
-  return lines.slice(1)
-    .map(splitCsvLine)
-    .map(parts => ({
-      campus: (parts[campusIndex] || '').trim(),
-      campusName: (parts[nameIndex] || '').trim(),
-      engineer: (parts[engineerIndex] || '').trim()
+  return lines
+    .slice(1)
+    .map((line) => splitCsvLine(line))
+    .map((parts) => ({
+      campus: String(parts[campusIndex] || "").trim(),
+      campusName: campusNameIndex >= 0 ? String(parts[campusNameIndex] || "").trim() : "",
+      engineer: String(parts[engineerIndex] || "").trim(),
     }))
-    .filter(row => row.campusName && row.engineer);
+    .filter((row) => row.campus && row.engineer)
+    .sort((a, b) => a.campus.localeCompare(b.campus));
 }
 
 function splitCsvLine(line) {
   const result = [];
-  let current = '';
+  let current = "";
   let inQuotes = false;
 
   for (let i = 0; i < line.length; i += 1) {
@@ -174,9 +247,9 @@ function splitCsvLine(line) {
       } else {
         inQuotes = !inQuotes;
       }
-    } else if (char === ',' && !inQuotes) {
+    } else if (char === "," && !inQuotes) {
       result.push(current);
-      current = '';
+      current = "";
     } else {
       current += char;
     }
@@ -184,29 +257,4 @@ function splitCsvLine(line) {
 
   result.push(current);
   return result;
-}
-
-function dedupe(items) {
-  const seen = new Set();
-  return items.filter(item => {
-    const key = `${item.campus}|${item.campusName}|${item.engineer}`;
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
-}
-
-function escapeHtml(value) {
-  return String(value || '')
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;');
-}
-
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./service-worker.js').catch(() => {});
-  });
 }
