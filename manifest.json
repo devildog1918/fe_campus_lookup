@@ -1,12 +1,11 @@
 {
   "name": "Field Engineer Lookup",
-  "short_name": "FieldEngineer",
-  "start_url": "./index.html",
+  "short_name": "FE Lookup",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f3f4f6",
-  "theme_color": "#9f3323",
-  "description": "Look up the Field Engineer assigned to a campus.",
+  "background_color": "#e5e7eb",
+  "theme_color": "#0f172a",
   "icons": [
     {
       "src": "./icons/icon-192.png",
