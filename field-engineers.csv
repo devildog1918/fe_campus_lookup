@@ -6,7 +6,7 @@ BCE,Bear Creek Elementary,Nancy Manzanares Barrera
 BDJH,Beckendorf Jr. High,Dominique Crook
 BES,Bryant Elementary,Karla Ostos Herrera
 BHE,Holland Elementary,Jerry Williams
-BJH,Beck Jr. High,"Arturo DeLeon, Jr."
+BJH,Beck Jr. High,Arturo DeLeon Jr
 CBE,Bethke Elementary,Roxann Urdaneta
 CE,Cimarron Elementary,Kelvin Vu
 CJH,Cardiff Jr. High,Juan Monroy Gonzalez
@@ -39,7 +39,7 @@ MRA,MRA,Kleins Lopez
 MDJH,McDonald Jr. High,Emanuel Flores
 MGE,Griffin Elementary,Jerry Williams
 MJE,Jenks Elementary,Karla Ostos Herrera
-MMJH,McMeans Jr. High,"Arturo DeLeon, Jr."
+MMJH,McMeans Jr. High,Arturo DeLeon Jr
 MPE,Memorial Parkway Elementary,Dennis Crook
 MPJH,Memorial Parkwy Jr. High,Roberto Mata
 MRE,Morton Ranch Elementary,David Cruz
@@ -86,12 +86,13 @@ LMC,LMC,Phillip Moreno
 East Trans,East Transportation,Nancy Manzanares Barrera
 JCSA,JCSA (Jeanne Coleman Annex),Jerry Williams
 Kronos,Kronos Clocks,Kelvin Vu
-Maintenance,Maintenance/Police Dept.,David Cruz
+Maintenance,Maintenance,David Cruz
+Police,Police Dept.,David Cruz
 BLC,BLC,Lee Cardwell
 North Tran,North West Trans Complex,Jorge Noriega
 Rhoads Stadium,Rhoads Stadium-Offices (Annex),Kleins Lopez
 Smart Boards,Smart Boards,Kelvin Vu
-ST Complex,South Transportation & ST Complex,"Arturo DeLeon, Jr."
+ST Complex,South Transportation & ST Complex,Arturo DeLeon Jr
 Warehouse,Warehouse,Victor Alvarado
 Printshop,Printshop,Victor Alvarado
 Admin Annex,Admin Annex,Victor Alvarado
