@@ -1,100 +1,102 @@
-Campus,Campus Name,Field Engineer,Phone,Email
-AABE,Boundy Elementary,Juan Monroy Gonzalez,2812345454,juanmgonzalez@katyisd.org
-ACE,Campbell Elementary,Michael Mota
-AJH,Adams Jr. High,Brandon Kennison
-BCE,Bear Creek Elementary,Nancy Manzanares Barrera
-BDJH,Beckendorf Jr. High,Dominique Crook
-BES,Bryant Elementary,Karla Ostos Herrera
-BHE,Holland Elementary,Jerry Williams
-BJH,Beck Jr. High,Arturo DeLeon Jr
-CBE,Bethke Elementary,Roxann Urdaneta
-CE,Cimarron Elementary,Kelvin Vu
-CJH,Cardiff Jr. High,Juan Monroy Gonzalez
-CRHS,Cinco Ranch H.S.,Jonathan Rath
-CRJH,Cinco Ranch Jr. High,Brandon Kennison
-DWE,Winborn Elementary,Juan Monroy Gonzalez
-FE,Fielder Elementary,Dennis Crook
-FES,Franz Elementary,David Cruz
-FHS,Freeman H.S.,George Brandon
-FPSE,Shafer Elementary,Michael Mota
-GE,Golbow Elementary,Emanuel Flores
-HE,Hutsell Elementary,Victor Alvarado
-HJH,Haskett Jr. High,Ron Gall
-JEE,Exley Elementary,Dennis Crook
-JHE,Hayes Elementary,Roberto Mata
-JHS,Jordan H.S.,Don Cashman
-JMCE,Cross Elementary,Jorge Noriega
-JRE,Randolph Elementary,Michael Mota
-JWE,Williams Elementary,Dennis Crook
-KDE,K. Davidson Elementary,Michael Mota
-KE,Katy Elementary,Victor Alvarado
-KHS,Katy H.S.,George Arriaga
-KJH,Katy Jr. High,Victor Alvarado
-MCE,Mayde Creek Elementary,Nancy Manzanares Barrera
-MCHS,Mayde Creek H.S.,Steve Martinez
-MCJH,Mayde Creek Jr. High,Nancy Manzanares Barrera
-MCTC,MCTC,Kleins Lopez
-OAC,OAC,Kleins Lopez
-MRA,MRA,Kleins Lopez
-MDJH,McDonald Jr. High,Emanuel Flores
-MGE,Griffin Elementary,Jerry Williams
-MJE,Jenks Elementary,Karla Ostos Herrera
-MMJH,McMeans Jr. High,Arturo DeLeon Jr
-MPE,Memorial Parkway Elementary,Dennis Crook
-MPJH,Memorial Parkwy Jr. High,Roberto Mata
-MRE,Morton Ranch Elementary,David Cruz
-MRHS,Morton Ranch H.S.,Lee Cardwell
-MRJH,Morton Ranch Jr. High,Michael Wong
-NCE,Nottingham Country Elementary,Nicholas Wheeler
-NJH,Nelson Jr. High,George Brandon
-OKE,Kilpatrick Elementary,Roberto Mata
-OLE,Leonard Elementary,David Cruz
-OTHS,Tompkins H.S.,Miguel Reyes
-PE,Pattison Elementary,Roberto Mata
-PHS,Paetow H.S.,Josue Banda
-PMCE,McElwain Elementary,Roxann Urdaneta
-PME,McRoberts Elementary,Juan Monroy Gonzalez
-RAE,Alexander Elementary,Jerry Williams
-RCFE,Faldyn Elementary,Ron Gall
-RES,Rhoads Elementary,Roxann Urdaneta
-RJWE,Wolman Elementary,Karla Ostos Herrera
-RKE,King Elementary,Manny Vera
-RRE,Rylander Elementary,Dominique Crook
-SCE,Creech Elementary,Jerry Williams
-SE,Sundown Elementary,Emanuel Flores
-SERE,Robinson Elementary,Jorge Noriega
-SES,Schmalz Elementary,Emanuel Flores
-SJH,Stockdick Jr. High,Michael Wong
-SLHS,Seven Lakes H.S.,Jeff Marchand
-SLJH,Seven Lakes Jr. High School,Kelvin Vu
-SSE,Stanley Elementary,Dominique Crook
-THS,Taylor H.S.,Nicholas Wheeler
-TJH,Tays Jr. High,Juan Bohorquez
-TWE,Wilson Elementary,Dominique Crook
-USE,Stephens Elementary,Roxann Urdaneta
-WCE,Woodcreek Elementary,Karla Ostos Herrera
-WCJH,Woodcreek Jr. High,Juan Bohorquez
-WE,Wolfe Elementary,Ron Gall
-WME,West Memorial Elementary,Manny Vera
-WMJH,West Memorial Jr. High,Manny Vera
-YES,Youngblood Elementary,Jorge Noriega
-AG Barn,AG Barn,Ron Gall
-ESC,ESC,Phillip Moreno
-ESC Annex,ESC Annex,Phillip Moreno
-PDA,PDA,Phillip Moreno
-LMC,LMC,Phillip Moreno
-East Trans,East Transportation,Nancy Manzanares Barrera
-JCSA,JCSA (Jeanne Coleman Annex),Jerry Williams
-Kronos,Kronos Clocks,Kelvin Vu
-Maintenance,Maintenance,David Cruz
-Police,Police Dept.,David Cruz
-BLC,BLC,Lee Cardwell
-North Tran,North West Trans Complex,Jorge Noriega
-Rhoads Stadium,Rhoads Stadium-Offices (Annex),Kleins Lopez
-Smart Boards,Smart Boards,Kelvin Vu
-ST Complex,South Transportation & ST Complex,Arturo DeLeon Jr
-Warehouse,Warehouse,Victor Alvarado
-Printshop,Printshop,Victor Alvarado
-Admin Annex,Admin Annex,Victor Alvarado
-West Trans,West Transportation,Victor Alvarado
-Legacy,Legacy Stadium,Kleins Lopez
+Campus,Campus Name,Field Engineer ,Phone,Email,Lead
+WMJH,West Memorial Junior High ,Manuel Vera,2813877458,ManuelVera@KatyISD.org,Benny Cantu
+RKE,King Elementary ,Manuel Vera,2813877458,ManuelVera@KatyISD.org,Benny Cantu
+WME,West Memorial Elementary ,Manuel Vera,2813877458,ManuelVera@KatyISD.org,Benny Cantu
+KHS,Katy High School ,George Arriaga,8327957109,GeorgeAArriaga@KatyISD.org,Manuel Vera
+WCJH,Woodcreek Junior High ,Juan Bohorquez,2817779256,JuanSBohorquez@KatyISD.org,Manuel Vera
+TJH,Tays Junior High ,Juan Bohorquez,2817779256,JuanSBohorquez@KatyISD.org,Manuel Vera
+PHS,Paetow High School ,Josue Banda,3465469344,JosueABanda@KatyISD.org,Manuel Vera
+MRJH,Morton Ranch Junior High ,Michael Wong,8324175382,MichaelWong@KatyISD.org,Manuel Vera
+SJH,Stockdick Junior High ,Michael Wong,8324175382,MichaelWong@KatyISD.org,Manuel Vera
+MRHS,Morton Ranch High School ,Lee Cardwell,8324277487,RichardLCardwell@KatyISD.org,Manuel Vera
+BLC,Behavioral Learning Center ,Lee Cardwell,8324277487,RichardLCardwell@KatyISD.org,Manuel Vera
+MCHS,Maybe Creek High School ,Steve Martinez ,8325266215,SteveMartinez@KatyISD.org,Manuel Vera
+BJH,Beck Junior High ,Arturo Deleon Jr,8323446079,arturodeleon2@katyisd.org,Manuel Vera
+MMJH,McMeans Junior High ,Arturo Deleon Jr,8323446079,arturodeleon2@katyisd.org,Manuel Vera
+South Trans,South Trans Complex,Arturo Deleon Jr,8323446079,arturodeleon2@katyisd.org,Manuel Vera
+AJH,Adams Junior High ,Brandon Kennison,7138296735,brandonekennison@katyisd.org,Manuel Vera
+CRJH,Cinco Ranch Junior High ,Brandon Kennison,7138296735,brandonekennison@katyisd.org,Manuel Vera
+SLJH,Seven Lakes Junior High ,Kelvin Vu,7137028151,kelvinlvu@katyisd.org,Manuel Vera
+CE,Cimareon Elementary ,Kelvin Vu,7137028151,kelvinlvu@katyisd.org,Manuel Vera
+TCP Clocks,TCP Clocks,Kelvin Vu,7137028151,kelvinlvu@katyisd.org,Manuel Vera
+Smart Boards,Smart Boards,Kelvin Vu,7137028151,kelvinlvu@katyisd.org,Manuel Vera
+GE,Golbow Elementary ,Emanuel Flores,8329206541,emanuelflores@katyisd.org,Manuel Vera
+SE,Sundown Elementary ,Emanuel Flores,8329206541,emanuelflores@katyisd.org,Manuel Vera
+SES,Schmaltz Elementary ,Emanuel Flores,8329206541,emanuelflores@katyisd.org,Manuel Vera
+MDJH,McDonald Junior High ,Emanuel Flores,8329206541,emanuelflores@katyisd.org,Manuel Vera
+RCFE,Faldyn Elementary ,Ron Gall,2816831436,ronalddgall@katyisd.org,Benny Cantu
+WE,Wolfe Elementary ,Ron Gall,2816831436,ronalddgall@katyisd.org,Benny Cantu
+HJH,Haskett Junior High ,Ron Gall,2816831436,ronalddgall@katyisd.org,Benny Cantu
+Ag Barn,Ag Barn,Ron Gall,2816831436,ronalddgall@katyisd.org,Benny Cantu
+ESC,Educational Support Complex,Phillip Moreno,8324927980,phillipjmoreno@katyisd.org,Ron Gall
+PDA,Professional Development Annex,Phillip Moreno,8324927980,phillipjmoreno@katyisd.org,Ron Gall
+OLC,Outdoor Learning Center ,Phillip Moreno,8324927980,phillipjmoreno@katyisd.org,Ron Gall
+HR Annex,Human Resources Annex,Phillip Moreno,8324927980,phillipjmoreno@katyisd.org,Ron Gall
+Project TYKE,Project TYKE,Phillip Moreno,8324927980,phillipjmoreno@katyisd.org,Ron Gall
+PME,McRoberts Elementary ,Juan Monroy Gonzalez,8329262032,juanjmonroygonzalez@katyisd.org,Ron Gall
+AABE,Boudny Elementary ,Juan Monroy Gonzalez,8329262032,juanjmonroygonzalez@katyisd.org,Ron Gall
+DWE,Winborn Elementary ,Juan Monroy Gonzalez,8329262032,juanjmonroygonzalez@katyisd.org,Ron Gall
+CJH,Cardiff Junior High ,Juan Monroy Gonzalez,8329262032,juanjmonroygonzalez@katyisd.org,Ron Gall
+BHE,Holland Elementary ,Jerry Williams ,2818894422,jerrymwilliams@katyisd.org,Ron Gall
+MGE ,Griffin Elementary ,Jerry Williams ,2818894422,jerrymwilliams@katyisd.org,Ron Gall
+RAE,Alexander Elementary ,Jerry Williams ,2818894422,jerrymwilliams@katyisd.org,Ron Gall
+SCE,Creech Elementary ,Jerry Williams ,2818894422,jerrymwilliams@katyisd.org,Ron Gall
+JCSA,Jeanne Coleman Support Annex,Jerry Williams ,2818894422,jerrymwilliams@katyisd.org,Ron Gall
+FE,Fielder Elementary ,Dennis Crook,8324270426,dennisrcrook@katyisd.org,Ron Gall
+JEE,Exley Elementary ,Dennis Crook,8324270426,dennisrcrook@katyisd.org,Ron Gall
+JWE,Williams Elementary ,Dennis Crook,8324270426,dennisrcrook@katyisd.org,Ron Gall
+MPE,Memorial Parkway Elementary ,Dennis Crook,8324270426,dennisrcrook@katyisd.org,Ron Gall
+JHS,Jordan High School ,Don Cashman,2816710110,donfcashman@katyisd.org,Ron Gall
+THS,Taylor High School ,Nick Wheeler,2816738369,nicholaswheeler@katyisd.org,Ron Gall
+NCE,Nottingham Country Elementary ,Nick Wheeler,2816738369,nicholaswheeler@katyisd.org,Ron Gall
+SLHS,Seven Lakes High School ,Jeff Marchland,3464654220,jeffreydmarchand@katyisd.org,Ron Gall
+FHS,Freeman High School ,George Brandon,2817793064,georgeabrandon@katyisd.org,Ron Gall
+NJH,Nelson Junior High ,George Brandon,2817793064,georgeabrandon@katyisd.org,Ron Gall
+ACE,Campbell Elementary,Michael Mota,2817809558,michaelamota@katyisd.org,Ron Gall
+FPSE ,Shafer Elementary,Michael Mota,2817809558,michaelamota@katyisd.org,Ron Gall
+JRE,Randolph Elementary,Michael Mota,2817809558,michaelamota@katyisd.org,Ron Gall
+KDE ,Davidson Elementary,Michael Mota,2817809558,michaelamota@katyisd.org,Ron Gall
+CRHS,Cinco Ranch High School,Jonathan Rath ,2814512923,jonathanjrath@katyisd.org,Ron Gall
+Legacy Stadium,Legacy Stadium,Kleins Lopez,7137028077,kleinselopez@katyisd.org,Benny Cantu
+Rhoades Stadium,Rhoades Stadium,Kleins Lopez,7137028077,kleinselopez@katyisd.org,Benny Cantu
+MCTC,Miller Career & Technical Center,Kleins Lopez,7137028077,kleinselopez@katyisd.org,Benny Cantu
+MRA,Martha Raines Academy,Kleins Lopez,7137028077,kleinselopez@katyisd.org,Benny Cantu
+OAC,Opportunity Awareness Center,Kleins Lopez,7137028077,kleinselopez@katyisd.org,Benny Cantu
+RSC,Robert Shaw Center for STEM,Kleins Lopez,7137028077,kleinselopez@katyisd.org,Benny Cantu
+MPJH,Memorial Parkway Junior High,Robert Mata,8327682676,robertomata@katyisd.org,Kleins Lopez
+JHE,Hayes Elementary,Robert Mata,8327682676,robertomata@katyisd.org,Kleins Lopez
+OKE,Kilpatrick Elementary,Robert Mata,8327682676,robertomata@katyisd.org,Kleins Lopez
+PE,Pattison Elementary,Robert Mata,8327682676,robertomata@katyisd.org,Kleins Lopez
+SSE,Stanley Elementary,Dominique Crook ,8322871300,dominiquescrook@katyisd.org,Kleins Lopez
+TWE,Wilson Elementary,Dominique Crook ,8322871300,dominiquescrook@katyisd.org,Kleins Lopez
+RRE,Rylander Elementary,Dominique Crook ,8322871300,dominiquescrook@katyisd.org,Kleins Lopez
+BDJH,Beckendorff Junior High,Dominique Crook ,8322871300,dominiquescrook@katyisd.org,Kleins Lopez
+FES,Franz Elementary,David Cruz,2817791319,davidccruz@katyisd.org,Kleins Lopez
+MRE,Morton Ranch Elementary,David Cruz,2817791319,davidccruz@katyisd.org,Kleins Lopez
+OLE,Leonard Elementary,David Cruz,2817791319,davidccruz@katyisd.org,Kleins Lopez
+Maintenance,Maintenance & Operations,David Cruz,2817791319,davidccruz@katyisd.org,Kleins Lopez
+Police,Law Enforcement Center,David Cruz,2817791319,davidccruz@katyisd.org,Kleins Lopez
+BCE,Bear Creek Elementary,Nancy Manzanares Barrera ,8324617825,nancymanzanaresbarrera@katyisd.org,Kleins Lopez
+MCE,Mayde Creek Elementary,Nancy Manzanares Barrera ,8324617825,nancymanzanaresbarrera@katyisd.org,Kleins Lopez
+MCJH,Mayde Creek Junior High,Nancy Manzanares Barrera ,8324617825,nancymanzanaresbarrera@katyisd.org,Kleins Lopez
+East Trans Complex,East Transportation Complex,Nancy Manzanares Barrera ,8324617825,nancymanzanaresbarrera@katyisd.org,Kleins Lopez
+OTHS,Tompkins High School,Miguel Reyes,8328404794,miguelereyes@katyisd.org,Kleins Lopez
+BES,Bryant Elementary,Karla Ostos Herrera,8326837316,karlacostosherrera@katyisd.org,Kleins Lopez
+RJWE,Wolman Elementrary,Karla Ostos Herrera,8326837316,karlacostosherrera@katyisd.org,Kleins Lopez
+WCE,Woodcreek Elementary,Karla Ostos Herrera,8326837316,karlacostosherrera@katyisd.org,Kleins Lopez
+MJE,Jenks Elementary,Karla Ostos Herrera,8326837316,karlacostosherrera@katyisd.org,Kleins Lopez
+HE,Hutsell Elementary,Victor Alvarado,8327951566,victoralvarado@katyisd.org,Kleins Lopez
+KE ,Katy Elementary,Victor Alvarado,8327951566,victoralvarado@katyisd.org,Kleins Lopez
+KJH,Katy Junior High,Victor Alvarado,8327951566,victoralvarado@katyisd.org,Kleins Lopez
+Warehouse,Support Services Complex,Victor Alvarado,8327951566,victoralvarado@katyisd.org,Kleins Lopez
+West Trans,West Transpotation,Victor Alvarado,8327951566,victoralvarado@katyisd.org,Kleins Lopez
+NFS,Nutrition & Food Services,Victor Alvarado,8327951566,victoralvarado@katyisd.org,Kleins Lopez
+YES,Youngblood Elementary,Jorge Noriega ,7136242647,jorgelnoriega@katyisd.org,Kleins Lopez
+JMCE,Cross Elementary,Jorge Noriega ,7136242647,jorgelnoriega@katyisd.org,Kleins Lopez
+SERE,Robertson Elementary,Jorge Noriega ,7136242647,jorgelnoriega@katyisd.org,Kleins Lopez
+North Trans,North West Trans Complex,Jorge Noriega ,7136242647,jorgelnoriega@katyisd.org,Kleins Lopez
+West Trans,North West Trans Complex,Jorge Noriega ,7136242647,jorgelnoriega@katyisd.org,Kleins Lopez
+CBE,Bethke Elementary,Roxana Urdaneta,7137322659,roxanaurdanetaibarra@katyisd.org,Kleins Lopez
+PMCE,McElwain Elementary,Roxana Urdaneta,7137322659,roxanaurdanetaibarra@katyisd.org,Kleins Lopez
+USE,Stephens Elementary,Roxana Urdaneta,7137322659,roxanaurdanetaibarra@katyisd.org,Kleins Lopez
+RES,Rhoades Elementary,Roxana Urdaneta,7137322659,roxanaurdanetaibarra@katyisd.org,Kleins Lopez
