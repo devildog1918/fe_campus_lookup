@@ -201,9 +201,26 @@
       flex: 1;
       border-radius: 22px;
       padding: 18px;
-      overflow: hidden;
       display: flex;
       flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .panel-content {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-right: 4px;
+    }
+
+    .panel-actions {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex-shrink: 0;
     }
 
     .panel.ready { background: var(--slate-100); border: 1px solid var(--slate-200); }
@@ -240,7 +257,7 @@
     }
 
     .fe-label {
-      margin-top: 16px;
+      margin-top: 12px;
       font-size: 0.74rem;
       font-weight: 800;
       text-transform: uppercase;
@@ -258,7 +275,7 @@
     }
 
     .contact-block {
-      margin-top: 16px;
+      margin-top: 12px;
       display: grid;
       gap: 10px;
     }
@@ -285,7 +302,7 @@
     }
 
     .actions {
-      margin-top: 16px;
+      margin-top: 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
@@ -321,7 +338,7 @@
     }
 
     .utility-actions {
-      margin-top: 10px;
+      margin-top: 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
@@ -339,7 +356,7 @@
     }
 
     .secondary-btn {
-      margin-top: 10px;
+      margin-top: 0;
       display: block;
       width: 100%;
       text-align: center;
@@ -677,48 +694,53 @@
       panel.className = "panel match";
       panel.innerHTML = `
         <div class="kicker match">Result</div>
-        <div class="campus">${match.campus}</div>
-        <div class="campus-name">${match.campusName || ""}</div>
 
-        <div class="fe-label">Field Engineer</div>
-        <div class="engineer">${match.engineer}</div>
+        <div class="panel-content">
+          <div class="campus">${match.campus}</div>
+          <div class="campus-name">${match.campusName || ""}</div>
 
-        <div class="contact-block">
-          ${formattedPhone ? `
-            <div class="contact-row">
-              <div class="contact-label">Phone</div>
-              <div class="contact-value">${formattedPhone}</div>
-            </div>
-          ` : ""}
+          <div class="fe-label">Field Engineer</div>
+          <div class="engineer">${match.engineer}</div>
 
-          ${match.email ? `
-            <div class="contact-row">
-              <div class="contact-label">Email</div>
-              <div class="contact-value">${match.email}</div>
-            </div>
-          ` : ""}
+          <div class="contact-block">
+            ${formattedPhone ? `
+              <div class="contact-row">
+                <div class="contact-label">Phone</div>
+                <div class="contact-value">${formattedPhone}</div>
+              </div>
+            ` : ""}
 
-          ${match.lead ? `
-            <div class="contact-row">
-              <div class="contact-label">Lead</div>
-              <div class="contact-value">${match.lead}</div>
-            </div>
-          ` : ""}
+            ${match.email ? `
+              <div class="contact-row">
+                <div class="contact-label">Email</div>
+                <div class="contact-value">${match.email}</div>
+              </div>
+            ` : ""}
+
+            ${match.lead ? `
+              <div class="contact-row">
+                <div class="contact-label">Lead</div>
+                <div class="contact-value">${match.lead}</div>
+              </div>
+            ` : ""}
+          </div>
         </div>
 
-        <div class="actions">
-          ${telValue ? `<a class="action-btn primary" href="tel:${telValue}">Call</a>` : `<div class="action-btn disabled">Call</div>`}
-          ${match.email ? `<a class="action-btn secondary" href="mailto:${match.email}">Email</a>` : `<div class="action-btn disabled">Email</div>`}
-        </div>
+        <div class="panel-actions">
+          <div class="actions">
+            ${telValue ? `<a class="action-btn primary" href="tel:${telValue}">Call</a>` : `<div class="action-btn disabled">Call</div>`}
+            ${match.email ? `<a class="action-btn secondary" href="mailto:${match.email}">Email</a>` : `<div class="action-btn disabled">Email</div>`}
+          </div>
 
-        <div class="utility-actions">
-          <button id="copyPhoneBtn" class="utility-btn" ${telValue ? "" : "disabled style='opacity:.45;cursor:default;'"}>Copy Phone</button>
-          <button id="copyEmailBtn" class="utility-btn" ${match.email ? "" : "disabled style='opacity:.45;cursor:default;'"}>Copy Email</button>
-        </div>
+          <div class="utility-actions">
+            <button id="copyPhoneBtn" class="utility-btn" ${telValue ? "" : "disabled style='opacity:.45;cursor:default;'"}>Copy Phone</button>
+            <button id="copyEmailBtn" class="utility-btn" ${match.email ? "" : "disabled style='opacity:.45;cursor:default;'"}>Copy Email</button>
+          </div>
 
-        <div class="utility-actions">
-          <button id="favoriteBtn" class="utility-btn">${favoriteLabel}</button>
-          <button id="clearBtn" class="utility-btn">Clear / New Search</button>
+          <div class="utility-actions">
+            <button id="favoriteBtn" class="utility-btn">${favoriteLabel}</button>
+            <button id="clearBtn" class="utility-btn">Clear / New Search</button>
+          </div>
         </div>
       `;
 
