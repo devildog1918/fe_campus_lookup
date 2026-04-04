@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -22,8 +22,6 @@
       --slate-200: #e2e8f0;
       --slate-100: #f1f5f9;
       --bg: #e5e7eb;
-      --green-bg: #f0fdf4;
-      --green-border: #bbf7d0;
       --amber-bg: #fffbeb;
       --amber-border: #fde68a;
       --red-bg: #fef2f2;
@@ -547,6 +545,10 @@
         item === "email" || item === "email address"
       );
 
+      const leadIndex = header.findIndex(item =>
+        item === "lead"
+      );
+
       if (campusIndex === -1 || engineerIndex === -1) {
         throw new Error("CSV must contain Campus and Field Engineer columns.");
       }
@@ -559,7 +561,8 @@
           campusName: campusNameIndex >= 0 ? String(parts[campusNameIndex] || "").trim() : "",
           engineer: String(parts[engineerIndex] || "").trim(),
           phone: phoneIndex >= 0 ? String(parts[phoneIndex] || "").trim() : "",
-          email: emailIndex >= 0 ? String(parts[emailIndex] || "").trim() : ""
+          email: emailIndex >= 0 ? String(parts[emailIndex] || "").trim() : "",
+          lead: leadIndex >= 0 ? String(parts[leadIndex] || "").trim() : ""
         }))
         .filter(row => row.campus && row.engineer)
         .sort((a, b) => a.campus.localeCompare(b.campus));
@@ -692,6 +695,13 @@
             <div class="contact-row">
               <div class="contact-label">Email</div>
               <div class="contact-value">${match.email}</div>
+            </div>
+          ` : ""}
+
+          ${match.lead ? `
+            <div class="contact-row">
+              <div class="contact-label">Lead</div>
+              <div class="contact-value">${match.lead}</div>
             </div>
           ` : ""}
         </div>
@@ -883,4 +893,4 @@
     });
   </script>
 </body>
-</html>   
+</html>
