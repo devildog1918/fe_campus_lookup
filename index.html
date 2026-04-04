@@ -1,27 +1,49 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Field Engineer Lookup</title>
-  <meta name="theme-color" content="#0f172a" />
+  <meta name="theme-color" content="#9f3323" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="FE Lookup" />
   <link rel="manifest" href="./manifest.json" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+
   <style>
+    :root {
+      --katy-red: #9f3323;
+      --katy-red-dark: #7f281b;
+      --slate-900: #0f172a;
+      --slate-700: #334155;
+      --slate-500: #64748b;
+      --slate-300: #cbd5e1;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --bg: #e5e7eb;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --amber-bg: #fffbeb;
+      --amber-border: #fde68a;
+      --red-bg: #fef2f2;
+      --red-border: #fecaca;
+    }
+
     * { box-sizing: border-box; }
+
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       font-family: Arial, Helvetica, sans-serif;
-      background: #e5e7eb;
+      background: var(--bg);
     }
+
     body {
       overflow: hidden;
     }
+
     .shell {
       height: 100dvh;
       padding: 12px;
@@ -29,65 +51,153 @@
       justify-content: center;
       align-items: stretch;
     }
+
     .app {
       width: 100%;
       max-width: 430px;
       height: 100%;
-      background: #ffffff;
+      background: #fff;
       border-radius: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
       padding: 16px;
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      position: relative;
     }
+
     .top {
       display: flex;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
       align-items: flex-start;
     }
+
     .title {
       font-size: 1.35rem;
-      font-weight: 700;
-      color: #0f172a;
+      font-weight: 800;
+      color: var(--slate-900);
       line-height: 1.1;
       margin: 0;
     }
+
     .sub {
       margin-top: 4px;
       font-size: 0.78rem;
-      color: #475569;
+      color: var(--slate-500);
+      line-height: 1.25;
     }
-    .tag {
-      background: #f1f5f9;
-      color: #475569;
+
+    .badges {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .tag,
+    .status-badge {
       font-size: 0.65rem;
-      font-weight: 700;
+      font-weight: 800;
       padding: 6px 8px;
       border-radius: 10px;
       white-space: nowrap;
     }
+
+    .tag {
+      background: var(--slate-100);
+      color: var(--slate-700);
+    }
+
+    .status-badge.online {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status-badge.offline {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
     .label {
       margin-top: 14px;
       margin-bottom: 6px;
       font-size: 0.75rem;
-      font-weight: 700;
-      color: #334155;
+      font-weight: 800;
+      color: var(--slate-700);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
+
+    .input-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: center;
+    }
+
     .input {
       width: 100%;
-      border: 1px solid #cbd5e1;
+      border: 2px solid var(--slate-300);
       border-radius: 18px;
       padding: 14px 16px;
-      font-size: 1.4rem;
+      font-size: 1.1rem;
       font-weight: 700;
-      text-transform: uppercase;
       outline: none;
+      color: var(--slate-900);
     }
+
     .input:focus {
-      border-color: #64748b;
+      border-color: var(--katy-red);
     }
+
+    .mini-btn {
+      border: none;
+      background: var(--slate-100);
+      color: var(--slate-900);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .mini-btn:active {
+      transform: scale(0.98);
+    }
+
+    .favorites-wrap {
+      margin-top: 10px;
+      min-height: 28px;
+    }
+
+    .favorites-title {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--slate-500);
+      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+    }
+
+    .favorite-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .favorite-chip {
+      border: none;
+      background: #fff1f0;
+      color: var(--katy-red-dark);
+      border: 1px solid #f3c3bc;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
     .panel {
       margin-top: 14px;
       flex: 1;
@@ -97,10 +207,11 @@
       display: flex;
       flex-direction: column;
     }
-    .panel.ready { background: #f8fafc; border: 1px solid #e2e8f0; }
-    .panel.match { background: #f0fdf4; border: 1px solid #bbf7d0; }
-    .panel.warn  { background: #fffbeb; border: 1px solid #fde68a; }
-    .panel.err   { background: #fef2f2; border: 1px solid #fecaca; }
+
+    .panel.ready { background: var(--slate-100); border: 1px solid var(--slate-200); }
+    .panel.match { background: #fff; border: 2px solid var(--katy-red); }
+    .panel.warn  { background: var(--amber-bg); border: 1px solid var(--amber-border); }
+    .panel.err   { background: var(--red-bg); border: 1px solid var(--red-border); }
 
     .kicker {
       font-size: 0.72rem;
@@ -109,42 +220,155 @@
       letter-spacing: 0.05em;
       margin-bottom: 10px;
     }
-    .kicker.ready { color: #334155; }
-    .kicker.match { color: #166534; }
+
+    .kicker.ready { color: var(--slate-700); }
+    .kicker.match { color: var(--katy-red); }
     .kicker.warn  { color: #92400e; }
     .kicker.err   { color: #991b1b; }
 
     .campus {
-      font-size: 3rem;
+      font-size: 2.5rem;
       font-weight: 800;
-      color: #0f172a;
+      color: var(--slate-900);
       line-height: 1;
       margin-top: 2px;
     }
+
+    .campus-name {
+      margin-top: 6px;
+      font-size: 0.92rem;
+      color: var(--slate-500);
+      line-height: 1.3;
+    }
+
     .fe-label {
       margin-top: 16px;
-      font-size: 0.85rem;
-      color: #475569;
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--slate-500);
+      letter-spacing: 0.04em;
     }
+
     .engineer {
       margin-top: 4px;
-      font-size: 1.9rem;
-      font-weight: 700;
-      color: #0f172a;
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--slate-900);
       line-height: 1.15;
       word-break: break-word;
     }
+
+    .contact-block {
+      margin-top: 16px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .contact-row {
+      background: var(--slate-100);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+
+    .contact-label {
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--slate-500);
+      margin-bottom: 4px;
+    }
+
+    .contact-value {
+      font-size: 0.96rem;
+      color: var(--slate-900);
+      word-break: break-word;
+    }
+
+    .actions {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .action-btn {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      padding: 13px 12px;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+    }
+
+    .action-btn.primary {
+      background: var(--katy-red);
+      color: #fff;
+    }
+
+    .action-btn.secondary {
+      background: var(--slate-900);
+      color: #fff;
+    }
+
+    .action-btn.disabled {
+      background: var(--slate-300);
+      color: #fff;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .utility-actions {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .utility-btn {
+      background: var(--slate-100);
+      color: var(--slate-900);
+      border: none;
+      border-radius: 14px;
+      padding: 11px 10px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .secondary-btn {
+      margin-top: 10px;
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: var(--slate-200);
+      color: var(--slate-900);
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 14px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+    }
+
     .small {
       font-size: 0.9rem;
-      color: #334155;
+      color: var(--slate-700);
       line-height: 1.4;
     }
+
     .count {
       font-size: 2.5rem;
       font-weight: 800;
-      color: #0f172a;
+      color: var(--slate-900);
       line-height: 1;
     }
+
     .matches {
       display: flex;
       flex-direction: column;
@@ -152,25 +376,59 @@
       overflow: auto;
       padding-right: 4px;
     }
+
     .match-btn {
       border: none;
-      background: #ffffff;
+      background: #fff;
       border-radius: 16px;
       padding: 12px;
       text-align: left;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       cursor: pointer;
     }
+
     .match-code {
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 800;
-      color: #0f172a;
+      color: var(--slate-900);
       line-height: 1;
     }
-    .match-name {
+
+    .match-campus-name {
       margin-top: 4px;
-      font-size: 0.95rem;
-      color: #334155;
+      font-size: 0.82rem;
+      color: var(--slate-500);
+      line-height: 1.25;
+    }
+
+    .match-name {
+      margin-top: 6px;
+      font-size: 0.92rem;
+      color: var(--slate-700);
+      line-height: 1.25;
+    }
+
+    .toast {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      background: var(--slate-900);
+      color: #fff;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: 0.2s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -180,25 +438,59 @@
       <div class="top">
         <div>
           <h1 class="title">Field Engineer Lookup</h1>
-          <div class="sub">Enter campus initials.</div>
+          <div class="sub">Search by campus, campus name, or engineer.</div>
         </div>
-        <div class="tag">CSV</div>
+        <div class="badges">
+          <div class="tag">CSV</div>
+          <div id="statusBadge" class="status-badge online">Online</div>
+        </div>
       </div>
 
-      <label class="label" for="campusInput">Campus Initials</label>
-      <input id="campusInput" class="input" type="text" placeholder="Example: MHS" autocomplete="off" autocorrect="off" spellcheck="false" />
+      <label class="label" for="searchInput">Search</label>
+      <div class="input-row">
+        <input id="searchInput" class="input" type="text" placeholder="Example: MCHS or Steve Martinez" autocomplete="off" autocorrect="off" spellcheck="false" />
+        <button id="clearTopBtn" class="mini-btn" type="button">Clear</button>
+      </div>
+
+      <div class="favorites-wrap">
+        <div id="favoritesBlock"></div>
+      </div>
 
       <div id="panel" class="panel ready"></div>
+
+      <div id="toast" class="toast"></div>
     </div>
   </div>
 
   <script>
-    const input = document.getElementById("campusInput");
+    const input = document.getElementById("searchInput");
+    const clearTopBtn = document.getElementById("clearTopBtn");
     const panel = document.getElementById("panel");
+    const statusBadge = document.getElementById("statusBadge");
+    const favoritesBlock = document.getElementById("favoritesBlock");
+    const toast = document.getElementById("toast");
+
     let rows = [];
+    const FAVORITES_KEY = "fe_lookup_favorites_v1";
+
+    function normalizeValue(value) {
+      return String(value || "").trim().toUpperCase().replace(/\s+/g, " ");
+    }
 
     function normalizeCampus(value) {
       return String(value || "").trim().toUpperCase().replace(/\s+/g, "");
+    }
+
+    function digitsOnly(value) {
+      return String(value || "").replace(/\D/g, "");
+    }
+
+    function formatPhone(phone) {
+      const cleaned = digitsOnly(phone);
+      if (cleaned.length === 10) {
+        return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6)}`;
+      }
+      return phone || "";
     }
 
     function splitCsvLine(line) {
@@ -234,11 +526,25 @@
       if (lines.length < 2) return [];
 
       const header = splitCsvLine(lines[0]).map(item => item.trim().toLowerCase());
+
       const campusIndex = header.findIndex(item =>
         item === "campus" || item === "campus initials" || item === "campus id"
       );
+
+      const campusNameIndex = header.findIndex(item =>
+        item === "campus name"
+      );
+
       const engineerIndex = header.findIndex(item =>
         item === "field engineer" || item === "engineer"
+      );
+
+      const phoneIndex = header.findIndex(item =>
+        item === "phone" || item === "phone number"
+      );
+
+      const emailIndex = header.findIndex(item =>
+        item === "email" || item === "email address"
       );
 
       if (campusIndex === -1 || engineerIndex === -1) {
@@ -250,10 +556,87 @@
         .map(splitCsvLine)
         .map(parts => ({
           campus: String(parts[campusIndex] || "").trim(),
-          engineer: String(parts[engineerIndex] || "").trim()
+          campusName: campusNameIndex >= 0 ? String(parts[campusNameIndex] || "").trim() : "",
+          engineer: String(parts[engineerIndex] || "").trim(),
+          phone: phoneIndex >= 0 ? String(parts[phoneIndex] || "").trim() : "",
+          email: emailIndex >= 0 ? String(parts[emailIndex] || "").trim() : ""
         }))
         .filter(row => row.campus && row.engineer)
         .sort((a, b) => a.campus.localeCompare(b.campus));
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(showToast._timer);
+      showToast._timer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 1800);
+    }
+
+    function getFavorites() {
+      try {
+        return JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]");
+      } catch {
+        return [];
+      }
+    }
+
+    function setFavorites(list) {
+      localStorage.setItem(FAVORITES_KEY, JSON.stringify(list));
+      renderFavorites();
+    }
+
+    function isFavorite(campus) {
+      return getFavorites().includes(campus);
+    }
+
+    function toggleFavorite(campus) {
+      const list = getFavorites();
+      const exists = list.includes(campus);
+
+      if (exists) {
+        setFavorites(list.filter(item => item !== campus));
+        showToast(`${campus} removed from favorites`);
+      } else {
+        setFavorites([campus, ...list].slice(0, 8));
+        showToast(`${campus} added to favorites`);
+      }
+    }
+
+    function renderFavorites() {
+      const favorites = getFavorites();
+
+      if (!favorites.length) {
+        favoritesBlock.innerHTML = "";
+        return;
+      }
+
+      favoritesBlock.innerHTML = `
+        <div class="favorites-title">Favorites</div>
+        <div class="favorite-list">
+          ${favorites.map(campus => `
+            <button class="favorite-chip" data-campus="${campus}">${campus}</button>
+          `).join("")}
+        </div>
+      `;
+
+      favoritesBlock.querySelectorAll(".favorite-chip").forEach(btn => {
+        btn.addEventListener("click", () => {
+          input.value = btn.dataset.campus;
+          updateView();
+        });
+      });
+    }
+
+    function updateStatusBadge() {
+      if (navigator.onLine) {
+        statusBadge.textContent = "Online";
+        statusBadge.className = "status-badge online";
+      } else {
+        statusBadge.textContent = "Offline";
+        statusBadge.className = "status-badge offline";
+      }
     }
 
     function renderReady() {
@@ -262,7 +645,7 @@
         <div class="kicker ready">Ready</div>
         <div class="count">${rows.length}</div>
         <div class="small" style="margin-top:8px;">Campus assignments loaded</div>
-        <div class="small" style="margin-top:16px;">Replace field-engineers.csv anytime to update the list.</div>
+        <div class="small" style="margin-top:16px;">Search by initials, campus name, or engineer name.</div>
       `;
     }
 
@@ -284,13 +667,92 @@
     }
 
     function renderMatch(match) {
+      const formattedPhone = formatPhone(match.phone);
+      const telValue = digitsOnly(match.phone);
+      const favoriteLabel = isFavorite(match.campus) ? "★ Favorite" : "☆ Add Favorite";
+
       panel.className = "panel match";
       panel.innerHTML = `
-        <div class="kicker match">Match Found</div>
+        <div class="kicker match">Result</div>
         <div class="campus">${match.campus}</div>
+        <div class="campus-name">${match.campusName || ""}</div>
+
         <div class="fe-label">Field Engineer</div>
         <div class="engineer">${match.engineer}</div>
+
+        <div class="contact-block">
+          ${formattedPhone ? `
+            <div class="contact-row">
+              <div class="contact-label">Phone</div>
+              <div class="contact-value">${formattedPhone}</div>
+            </div>
+          ` : ""}
+
+          ${match.email ? `
+            <div class="contact-row">
+              <div class="contact-label">Email</div>
+              <div class="contact-value">${match.email}</div>
+            </div>
+          ` : ""}
+        </div>
+
+        <div class="actions">
+          ${telValue ? `<a class="action-btn primary" href="tel:${telValue}">Call</a>` : `<div class="action-btn disabled">Call</div>`}
+          ${match.email ? `<a class="action-btn secondary" href="mailto:${match.email}">Email</a>` : `<div class="action-btn disabled">Email</div>`}
+        </div>
+
+        <div class="utility-actions">
+          <button id="copyPhoneBtn" class="utility-btn" ${telValue ? "" : "disabled style='opacity:.45;cursor:default;'"}>Copy Phone</button>
+          <button id="copyEmailBtn" class="utility-btn" ${match.email ? "" : "disabled style='opacity:.45;cursor:default;'"}>Copy Email</button>
+        </div>
+
+        <div class="utility-actions">
+          <button id="favoriteBtn" class="utility-btn">${favoriteLabel}</button>
+          <button id="clearBtn" class="utility-btn">Clear / New Search</button>
+        </div>
       `;
+
+      const copyPhoneBtn = document.getElementById("copyPhoneBtn");
+      const copyEmailBtn = document.getElementById("copyEmailBtn");
+      const favoriteBtn = document.getElementById("favoriteBtn");
+      const clearBtn = document.getElementById("clearBtn");
+
+      if (copyPhoneBtn && telValue) {
+        copyPhoneBtn.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(formattedPhone || telValue);
+            showToast("Phone copied");
+          } catch {
+            showToast("Could not copy phone");
+          }
+        });
+      }
+
+      if (copyEmailBtn && match.email) {
+        copyEmailBtn.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(match.email);
+            showToast("Email copied");
+          } catch {
+            showToast("Could not copy email");
+          }
+        });
+      }
+
+      if (favoriteBtn) {
+        favoriteBtn.addEventListener("click", () => {
+          toggleFavorite(match.campus);
+          renderMatch(match);
+        });
+      }
+
+      if (clearBtn) {
+        clearBtn.addEventListener("click", () => {
+          input.value = "";
+          input.focus();
+          renderReady();
+        });
+      }
     }
 
     function renderNoMatch(query) {
@@ -298,8 +760,18 @@
       panel.innerHTML = `
         <div class="kicker err">No Match Found</div>
         <div class="campus" style="font-size:2rem;">${query}</div>
-        <div class="small" style="margin-top:12px;">No campus matched that entry.</div>
+        <div class="small" style="margin-top:12px;">No campus, campus name, or engineer matched that entry.</div>
+        <button id="clearBtn" class="secondary-btn">Clear / New Search</button>
       `;
+
+      const clearBtn = document.getElementById("clearBtn");
+      if (clearBtn) {
+        clearBtn.addEventListener("click", () => {
+          input.value = "";
+          input.focus();
+          renderReady();
+        });
+      }
     }
 
     function renderPartial(matches) {
@@ -307,9 +779,10 @@
       panel.innerHTML = `
         <div class="kicker warn">Possible Matches</div>
         <div class="matches">
-          ${matches.slice(0, 4).map(item => `
+          ${matches.slice(0, 6).map(item => `
             <button class="match-btn" data-campus="${item.campus}">
               <div class="match-code">${item.campus}</div>
+              <div class="match-campus-name">${item.campusName || ""}</div>
               <div class="match-name">${item.engineer}</div>
             </button>
           `).join("")}
@@ -325,23 +798,41 @@
     }
 
     function updateView() {
-      const normalized = normalizeCampus(input.value);
+      const raw = input.value.trim();
+      const queryCampus = normalizeCampus(raw);
+      const queryText = normalizeValue(raw);
 
-      if (!normalized) {
+      if (!raw) {
         renderReady();
         return;
       }
 
-      const exactMatch = rows.find(item => normalizeCampus(item.campus) === normalized) || null;
+      const exactCampusMatch = rows.find(item => normalizeCampus(item.campus) === queryCampus) || null;
+      if (exactCampusMatch) {
+        renderMatch(exactCampusMatch);
+        return;
+      }
 
-      if (exactMatch) {
-        renderMatch(exactMatch);
+      const exactNameMatch = rows.find(item =>
+        normalizeValue(item.campusName) === queryText ||
+        normalizeValue(item.engineer) === queryText
+      ) || null;
+
+      if (exactNameMatch) {
+        renderMatch(exactNameMatch);
         return;
       }
 
       const partialMatches = rows.filter(item => {
         const campus = normalizeCampus(item.campus);
-        return campus.includes(normalized) && campus !== normalized;
+        const campusName = normalizeValue(item.campusName);
+        const engineer = normalizeValue(item.engineer);
+
+        return (
+          campus.includes(queryCampus) ||
+          campusName.includes(queryText) ||
+          engineer.includes(queryText)
+        );
       });
 
       if (partialMatches.length > 0) {
@@ -349,7 +840,7 @@
         return;
       }
 
-      renderNoMatch(normalized);
+      renderNoMatch(raw);
     }
 
     async function loadData() {
@@ -366,10 +857,16 @@
       }
     }
 
-    input.addEventListener("input", () => {
-      input.value = input.value.toUpperCase();
-      updateView();
+    input.addEventListener("input", updateView);
+
+    clearTopBtn.addEventListener("click", () => {
+      input.value = "";
+      input.focus();
+      renderReady();
     });
+
+    window.addEventListener("online", updateStatusBadge);
+    window.addEventListener("offline", updateStatusBadge);
 
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
@@ -377,7 +874,13 @@
       });
     }
 
+    updateStatusBadge();
+    renderFavorites();
     loadData();
+
+    window.addEventListener("load", () => {
+      setTimeout(() => input.focus(), 150);
+    });
   </script>
 </body>
-</html>
+</html>   
