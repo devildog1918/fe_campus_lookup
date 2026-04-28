@@ -1,7 +1,7 @@
 Campus,Campus Name,Field Engineer ,Phone,Email,Lead
-WMJH,West Memorial Junior High ,Manuel Vera,2813877458,ManuelVera@KatyISD.org,Benny Cantu
-RKE,King Elementary ,Manuel Vera,2813877458,ManuelVera@KatyISD.org,Benny Cantu
-WME,West Memorial Elementary ,Manuel Vera,2813877458,ManuelVera@KatyISD.org,Benny Cantu
+WMJH,West Memorial Junior High ,Manuel Vera,2813877458,ManuelVera@KatyISD.org
+RKE,King Elementary ,Manuel Vera,2813877458,ManuelVera@KatyISD.org
+WME,West Memorial Elementary ,Manuel Vera,2813877458,ManuelVera@KatyISD.org
 KHS,Katy High School ,George Arriaga,8327957109,GeorgeAArriaga@KatyISD.org,Manuel Vera
 WCJH,Woodcreek Junior High ,Juan Bohorquez,2817779256,JuanSBohorquez@KatyISD.org,Manuel Vera
 TJH,Tays Junior High ,Juan Bohorquez,2817779256,JuanSBohorquez@KatyISD.org,Manuel Vera
@@ -24,10 +24,10 @@ GE,Golbow Elementary ,Emanuel Flores,8329206541,emanuelflores@katyisd.org,Manuel
 SE,Sundown Elementary ,Emanuel Flores,8329206541,emanuelflores@katyisd.org,Manuel Vera
 SES,Schmaltz Elementary ,Emanuel Flores,8329206541,emanuelflores@katyisd.org,Manuel Vera
 MDJH,McDonald Junior High ,Emanuel Flores,8329206541,emanuelflores@katyisd.org,Manuel Vera
-RCFE,Faldyn Elementary ,Ron Gall,2816831436,ronalddgall@katyisd.org,Benny Cantu
-WE,Wolfe Elementary ,Ron Gall,2816831436,ronalddgall@katyisd.org,Benny Cantu
-HJH,Haskett Junior High ,Ron Gall,2816831436,ronalddgall@katyisd.org,Benny Cantu
-Ag Barn,Ag Barn,Ron Gall,2816831436,ronalddgall@katyisd.org,Benny Cantu
+RCFE,Faldyn Elementary ,Ron Gall,2816831436,ronalddgall@katyisd.org
+WE,Wolfe Elementary ,Ron Gall,2816831436,ronalddgall@katyisd.org
+HJH,Haskett Junior High ,Ron Gall,2816831436,ronalddgall@katyisd.org
+Ag Barn,Ag Barn,Ron Gall,2816831436,ronalddgall@katyisd.org
 ESC,Educational Support Complex,Phillip Moreno,8324927980,phillipjmoreno@katyisd.org,Ron Gall
 PDA,Professional Development Annex,Phillip Moreno,8324927980,phillipjmoreno@katyisd.org,Ron Gall
 OLC,Outdoor Learning Center ,Phillip Moreno,8324927980,phillipjmoreno@katyisd.org,Ron Gall
@@ -42,10 +42,10 @@ MGE ,Griffin Elementary ,Jerry Williams ,2818894422,jerrymwilliams@katyisd.org,R
 RAE,Alexander Elementary ,Jerry Williams ,2818894422,jerrymwilliams@katyisd.org,Ron Gall
 SCE,Creech Elementary ,Jerry Williams ,2818894422,jerrymwilliams@katyisd.org,Ron Gall
 JCSA,Jeanne Coleman Support Annex,Jerry Williams ,2818894422,jerrymwilliams@katyisd.org,Ron Gall
-FE,Fielder Elementary ,Dennis Crook,8324270426,dennisrcrook@katyisd.org,Ron Gall
-JEE,Exley Elementary ,Dennis Crook,8324270426,dennisrcrook@katyisd.org,Ron Gall
-JWE,Williams Elementary ,Dennis Crook,8324270426,dennisrcrook@katyisd.org,Ron Gall
-MPE,Memorial Parkway Elementary ,Dennis Crook,8324270426,dennisrcrook@katyisd.org,Ron Gall
+FE,Fielder Elementary ,Desktop Services,,.org,Ron Gall
+JEE,Exley Elementary ,Desktop Services,,,Ron Gall
+JWE,Williams Elementary ,Desktop Services,,,Ron Gall
+MPE,Memorial Parkway Elementary ,Desktop Services,,,Ron Gall
 JHS,Jordan High School ,Don Cashman,2816710110,donfcashman@katyisd.org,Ron Gall
 THS,Taylor High School ,Nick Wheeler,2816738369,nicholaswheeler@katyisd.org,Ron Gall
 NCE,Nottingham Country Elementary ,Nick Wheeler,2816738369,nicholaswheeler@katyisd.org,Ron Gall
@@ -57,20 +57,20 @@ FPSE ,Shafer Elementary,Michael Mota,2817809558,michaelamota@katyisd.org,Ron Gal
 JRE,Randolph Elementary,Michael Mota,2817809558,michaelamota@katyisd.org,Ron Gall
 KDE ,Davidson Elementary,Michael Mota,2817809558,michaelamota@katyisd.org,Ron Gall
 CRHS,Cinco Ranch High School,Jonathan Rath ,2814512923,jonathanjrath@katyisd.org,Ron Gall
-Legacy Stadium,Legacy Stadium,Kleins Lopez,7137028077,kleinselopez@katyisd.org,Benny Cantu
-Rhoades Stadium,Rhoades Stadium,Kleins Lopez,7137028077,kleinselopez@katyisd.org,Benny Cantu
-MCTC,Miller Career & Technical Center,Kleins Lopez,7137028077,kleinselopez@katyisd.org,Benny Cantu
-MRA,Martha Raines Academy,Kleins Lopez,7137028077,kleinselopez@katyisd.org,Benny Cantu
-OAC,Opportunity Awareness Center,Kleins Lopez,7137028077,kleinselopez@katyisd.org,Benny Cantu
-RSC,Robert Shaw Center for STEM,Kleins Lopez,7137028077,kleinselopez@katyisd.org,Benny Cantu
+Legacy Stadium,Legacy Stadium,Kleins Lopez,7137028077,kleinselopez@katyisd.org
+Rhoades Stadium,Rhoades Stadium,Kleins Lopez,7137028077,kleinselopez@katyisd.org
+MCTC,Miller Career & Technical Center,Kleins Lopez,7137028077,kleinselopez@katyisd.org
+MRA,Martha Raines Academy,Kleins Lopez,7137028077,kleinselopez@katyisd.org
+OAC,Opportunity Awareness Center,Kleins Lopez,7137028077,kleinselopez@katyisd.org
+RSC,Robert Shaw Center for STEM,Kleins Lopez,7137028077,kleinselopez@katyisd.org
 MPJH,Memorial Parkway Junior High,Robert Mata,8327682676,robertomata@katyisd.org,Kleins Lopez
 JHE,Hayes Elementary,Robert Mata,8327682676,robertomata@katyisd.org,Kleins Lopez
 OKE,Kilpatrick Elementary,Robert Mata,8327682676,robertomata@katyisd.org,Kleins Lopez
 PE,Pattison Elementary,Robert Mata,8327682676,robertomata@katyisd.org,Kleins Lopez
-SSE,Stanley Elementary,Dominique Crook ,8322871300,dominiquescrook@katyisd.org,Kleins Lopez
-TWE,Wilson Elementary,Dominique Crook ,8322871300,dominiquescrook@katyisd.org,Kleins Lopez
-RRE,Rylander Elementary,Dominique Crook ,8322871300,dominiquescrook@katyisd.org,Kleins Lopez
-BDJH,Beckendorff Junior High,Dominique Crook ,8322871300,dominiquescrook@katyisd.org,Kleins Lopez
+SSE,Stanley Elementary,Desktop Services ,,,Kleins Lopez
+TWE,Wilson Elementary,Desktop Services ,,,Kleins Lopez
+RRE,Rylander Elementary,Desktop Services ,,,Kleins Lopez
+BDJH,Beckendorff Junior High,Desktop Services ,,,Kleins Lopez
 FES,Franz Elementary,David Cruz,2817791319,davidccruz@katyisd.org,Kleins Lopez
 MRE,Morton Ranch Elementary,David Cruz,2817791319,davidccruz@katyisd.org,Kleins Lopez
 OLE,Leonard Elementary,David Cruz,2817791319,davidccruz@katyisd.org,Kleins Lopez
