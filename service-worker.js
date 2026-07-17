@@ -1,4 +1,4 @@
-const CACHE_NAME = "fe-lookup-v8";
+const CACHE_NAME = "fe-lookup-v10";
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
